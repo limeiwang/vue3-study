@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="../../source/vue-next/packages/vue/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      const {
+        createApp,
+        reactive,
+        computed,
+        watch,
+        onMounted,
+        onUnmounted,
+        toRefs,
+      } = Vue;
+
+      // 尤大神的经典例子 鼠标位置侦听逻辑
+      function useMouse() {
+        const state = reactive({
+          x: 0,
+          y: 0,
+        });
+        const update = (e) => {
+          state.x = e.pageX;
+          state.y = e.pageY;
+        };
+        onMounted(() => {
+          window.addEventListener("mousemove", update);
+        });
+        onUnmounted(() => {
+          window.removeEventListener("mousemove", update);
+        });
+        return toRefs(state);
+      }
+
+      function useCounter() {
+        const state = reactive({
+          num: 1,
+        });
+        onMounted(() => {
+          setInterval(() => {
+            state.num++;
+          }, 1000);
+        });
+        return toRefs(state);
+      }
+
+      const MyComponent = {
+        template: `<div>x:{{ x }} y:{{ y }} num: {{num}}</div>`,
+        setup() {
+          return {
+            ...useMouse(),
+            ...useCounter(),
+          };
+        },
+      };
+      createApp(MyComponent).mount("#app");
+    </script>
+  </body>
+</html>
