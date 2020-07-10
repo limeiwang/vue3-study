@@ -1,11 +1,16 @@
-// Proxy 可以拦截所以的操作 不需要$set
-//   支持全部的数据格式，Array，Map
-//   懒收集自带能力
-// defineProperty
-//   初始化的时候，全部递归完毕
-//   数组需要单独拦截
-//   对象新增和删除属性，不能拦截，所以需要 $set, $
+// Vue2.0
+// 基于Object.defineProperty，不具备监听数组的能力，需要重新定义数组的原型来达到响应式。
+// Object.defineProperty 无法检测到对象属性的添加和删除 。
+// 由于Vue会在初始化实例时对属性执行getter/setter转化，所有属性必须在data对象上存在才能让Vue将它转换为响应式。
+// 深度监听需要一次性递归，对性能影响比较大。
+// Vue3.0
+// 基于Proxy和Reflect，<可以原生监听数组，可以监听对象属性的添加和删除。
+// 不需要一次性遍历data的属性，可以显著提高性能。
+// 因为Proxy是ES6新增的属性，有些浏览器还不支持,只能兼容到IE11 。
 
+// Proxy
+//   对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）。
+//   https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 // Reflect 
 //   是一个内置的对象，它提供拦截 JavaScript 操作的方法。这些方法与proxy handlers的方法相同。
 //   https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
