@@ -10,7 +10,7 @@
 
 // Proxy
 //   对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）。
-//   https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+//   https://es6.ruanyifeng.com/#docs/proxy
 // Reflect 
 //   是一个内置的对象，它提供拦截 JavaScript 操作的方法。这些方法与proxy handlers的方法相同。
 //   https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
