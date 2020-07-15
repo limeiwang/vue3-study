@@ -40,7 +40,7 @@ export default {
     },
 
     setup() {
-
+        
         return {
             list: HTTPRequest('list.json')
         }
