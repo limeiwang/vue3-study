@@ -31,7 +31,7 @@ yarn install
 
 ```
 cd source/vue-next
-yarn build
+yarn dev
 ```
 
 ### 添加SourceMap文件
@@ -39,9 +39,9 @@ yarn build
 
 ```
 # 设置环境变量 windows
-set SOURCE_MAP=true && yarn dev
+命令：set SOURCE_MAP=true && yarn dev
 # 设置环境变量 mac
-export SOURCE_MAP=true && yarn dev
+命令：export SOURCE_MAP=true && yarn dev
 ```
 
 ### 如何运行模板解析器
