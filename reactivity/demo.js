@@ -33,37 +33,37 @@ dependencies.data = {}
 dependencies.data.name = []
 dependencies.data.name.push(update)
 
-// // 触发依赖
-// function defineReactive(target, key, value) {
-//     // 核心 API
-//     Object.defineProperty(target, key, {
-//         get() {
-//             // 获取值
-//             return value
-//         },
-//         set(newValue) {
-//             // 深度监听
-//             // 修改值
-//             value = newValue;
-//             dependencies.data.name.forEach(fn => fn());
-//         }
-//     })
-// }
+// 触发依赖 vue2
+function defineReactive(target, key, value) {
+    // 核心 API
+    Object.defineProperty(target, key, {
+        get() {
+            // 获取值
+            return value
+        },
+        set(newValue) {
+            // 深度监听
+            // 修改值
+            value = newValue;
+            dependencies.data.name.forEach(fn => fn());
+        }
+    })
+}
 
-// function observer(target) {
-//     if (typeof target !== "object" || target === null) {
-//         // 不是对象或数组
-//         return target;
-//     }
-//     for (let key in target) {
-//         defineReactive(target, key, target[key]);
-//     }
-// }
-// observer(state);
-// state.name = "abc";
-// console.log(myTitle);
+function observer(target) {
+    if (typeof target !== "object" || target === null) {
+        // 不是对象或数组
+        return target;
+    }
+    for (let key in target) {
+        defineReactive(target, key, target[key]);
+    }
+}
+observer(state);
+state.name = "abc";
+console.log(myTitle);
 
-
+// 触发依赖 vue3
 const baseHandler = {
     get(obj, prop) {
         return Reflect.get(obj, prop);
