@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <button id="btn">按钮</button>
+    <script src="./reactive.js"></script>
+    <script>
+      let app = document.getElementById("app");
+      let btn = document.getElementById("btn");
+
+      const data = reactive({
+        name: "lmw",
+        age: 18,
+      });
+
+      const double = computed(() => data.age * 2);
+
+      effect(() => {
+        app.innerHTML = `<h1>this is name: ${data.name},this is age:${data.age},double is:${double.value} </h1>`;
+      });
+      btn.addEventListener("click", () => {
+        data.age++;
+      });
+    </script>
+  </body>
+</html>
