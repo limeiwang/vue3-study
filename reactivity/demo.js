@@ -1,5 +1,6 @@
 // 需求：
 // 当改变一个数据的时候，自动执行所有依赖这个数据的函数
+// 也就是观察者模式
 
 
 const state = {
@@ -35,6 +36,8 @@ dependencies.data.name.push(update)
 
 // 触发依赖 vue2
 function defineReactive(target, key, value) {
+    // 深度监听
+    observer(value);
     // 核心 API
     Object.defineProperty(target, key, {
         get() {
@@ -43,6 +46,7 @@ function defineReactive(target, key, value) {
         },
         set(newValue) {
             // 深度监听
+            observer(newValue);
             // 修改值
             value = newValue;
             dependencies.data.name.forEach(fn => fn());
