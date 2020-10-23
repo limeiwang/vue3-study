@@ -4,12 +4,13 @@ import * as PIXI from "pixi.js";
 // pixi.js
 // 初始化
 const game = new PIXI.Application({
-  width: 750,
-  height: 1080,
+    width: 750,
+    height: 1080,
+    backgroundColor: "0x1099bb"
 });
 
 document.body.appendChild(game.view);
 
 export function getCanvasRootContainer() {
-  return game.stage;
+    return game.stage;
 }

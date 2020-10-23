@@ -8,12 +8,11 @@ import {
     watch
 } from "@vue/runtime-core";
 export default defineComponent({
-    setup() {
+    setup(,) {
         const planeInfo = reactive({
             y: 150,
             x: 150
         })
-        // 让小球动起来
         const speed = 15;
         window.addEventListener('keydown', (e) => {
             console.log(e)

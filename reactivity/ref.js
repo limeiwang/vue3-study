@@ -2,7 +2,7 @@ let activeEffect;
 
 class Dep {
   subs = new Set()
-  tarck() {
+  track() {
     // 收集依赖
     if(activeEffect){
       this.subs.add(activeEffect)
@@ -27,7 +27,7 @@ function ref(val){
   // 拦截.value操作
   let state = {
     get vaule(){
-      dep.tarck()
+      dep.track()
       return _value
     },
     set vaule(newValue){
